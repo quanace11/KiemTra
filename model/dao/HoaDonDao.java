@@ -1,7 +1,4 @@
 package dao;
-
-
-import java.beans.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +26,7 @@ public class HoaDonDao {
            
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;//SELECT TOP 1 * FROM table_Name ORDER BY unique_column DESC
+            return false;
         }
 	}
 	public Long getMaHoaDon() throws Exception {

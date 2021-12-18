@@ -12,8 +12,8 @@ import bean.KhachHangBean;
 public class GioHangDao {
 	
 	public boolean insertGioHang(String macay,Long soluongmua,Long mahoadon) throws Exception{
-		String sql = "INSERT INTO dbo.ChiTietHoaDon (macay,SoLuongMua,mahoadon)"
-				+ " values(?,?,?)";
+		String sql = "INSERT INTO dbo.ChiTietHoaDon (macay,SoLuongMua,mahoadon,damua)"
+				+ " values(?,?,?,0)";
 		DungChung dc = new DungChung();
 		dc.KetNoi();
 		try {

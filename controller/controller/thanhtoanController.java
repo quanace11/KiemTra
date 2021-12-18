@@ -55,17 +55,17 @@ public class thanhtoanController extends HttpServlet {
 						rDispatcher.forward(request, response);
 					}else {
 						request.setAttribute("ktrathanhtoan", (long)0);
-						RequestDispatcher rDispatcher =request.getRequestDispatcher("giohang");
+						RequestDispatcher rDispatcher =request.getRequestDispatcher("giohangController");
 						rDispatcher.forward(request, response);
 					}
 				}else {
 					request.setAttribute("ktrathanhtoan", (long)3);
-					RequestDispatcher rDispatcher =request.getRequestDispatcher("giohang");
+					RequestDispatcher rDispatcher =request.getRequestDispatcher("giohangController");
 					rDispatcher.forward(request, response);
 				}
 			}else {
 				request.setAttribute("ktrathanhtoan", (long)2);
-				RequestDispatcher rDispatcher =request.getRequestDispatcher("giohang");
+				RequestDispatcher rDispatcher =request.getRequestDispatcher("giohangController");
 				rDispatcher.forward(request, response);
 			}
 		} catch (Exception e) {

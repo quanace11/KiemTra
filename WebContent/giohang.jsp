@@ -69,7 +69,7 @@
                     <li>
                     	<a><i>Xin chào: <%=khachhang.getHoten()%></i></a>
                     	<ul class="subnav-1" >
-                        	<li><a href="">Lịch sử mua hàng</a></li>
+                        	<li><a href="lichsuController">Lịch sử mua hàng</a></li>
                         	<li><a href="HtcayController?dangxuat=oke"">Đăng xuất</a></li>
                       
                     	</ul>
