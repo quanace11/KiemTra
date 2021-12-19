@@ -22,71 +22,7 @@
 
       
 <style>
-    body {
-        overflow-y: scroll;
-  
-    }
-
-    body::-webkit-scrollbar {
-        width: 11px;
-    }
-
-    body::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 100vw;
-        border: 2px solid #fff;
-    }
-
-    .cart {
-        position: relative;
-    }
-
-    .cart-notice {
-        position: absolute;
-        top: 7px;
-        color: #fff;
-        background-color: #bbb;
-        border-radius: 30px;
-        padding: 0px 8px;
-        right: -4px;
-    }
-
-    .product-item {
-        display: flex;
-        
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 8px;
-        margin-bottom: 8px;
-      
-    }
-
-    .product-item__img {
-        margin-right: 12px;
-        border-radius: 6px;
-    }
-
-    .img__item {
-        border: 1px solid #ccc;
-        width: 120px
-    }
-
-    .product-item__info {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        flex: 2;
-    }
-
-    h4 {
-        display: inline-block;
-    }
-
-    .invoice-code,
-    .product-item__price {
-        display: flex;
-        justify-content: space-between;
-    }
-
+    
     
 </style>
 <body>
@@ -154,16 +90,14 @@
 			list =(ArrayList<LichSuBean>) request.getAttribute("lichsumua");
 		}
 	%>
-	<div class="main-historys" style="margin-top: 8%; margin-left: 90px;">
-		<div class="history">
-             <div class="invoice">
+	<div id="main-historys" style="margin-top: 8%; margin-left: 90px;margin-right:90px;overflow:hidden">
               	  <div class="content-history">
                       <h2 style="color: black;text-align: center; margin-bottom: 100px;">Lịch sử mua hàng</h2>
                   </div>
-                  <div class="product-list" style="border-top: 2px solid blue;">
+                  
                    <%if(list != null) { %>
                    <%for(LichSuBean h : list) {%>
-                   <% Long idhoadon = h.getMaHD(); %>
+                   <% Long idhoadon = h.getMaHD(); %><div class="product-list" style="border-top: 2px solid blue;">
                    <h4 style="margin-left:47%; font-weight: bold">Date: <%=h.getNgaymua() %></h4>
                       <div class="product-item" style="display: flex;padding-top: 15px;">
                           <div class="product-item__img" style="padding-right: 8%;  flex-shrink: 0;">
@@ -183,23 +117,20 @@
                                    </div>
                                    <div class="product-item__price"style = "font-size: 18px" >
                                        <div>Price: <%=formatter.format(h.getGia()) + "$" %></div>
-                                       <div style="font-size: 20px; font-weight: bold; color: #669bbc"><%=(h.getSoluongMua()) %></div>
+                                       <div style="font-size: 20px; font-weight: bold; color: #669bbc;margin-left: 93%;margin-top:5px;"><%=(h.getSoluongMua()) %></div>
                                    </div>
                               </div>
                           </div>
                       </div>
+                      <div style="border-bottom: 2px solid blue; display: flex; justify-content: space-between; padding-bottom: 8px;margin-bottom: 48px;margin-top: 16px;">
+                      	  <div style="font-weight: bold; font-size:18px" >Total price:
+                              <span style="color: #780000; font-weight: bold;"><%=formatter.format((h.getGia()* h.getSoluongMua())) + "Vnd" %></span>
+                      		</div>
+                   	  </div>
                   </div>
-                  <div style="border-bottom: 2px solid blue; display: flex; justify-content: space-between; padding-bottom: 8px">
-                      <div style="font-weight: bold; font-size:18px" >Total price:
-                          <span style="color: #780000; font-weight: bold;"><%=formatter.format((h.getGia()* h.getSoluongMua())) + "Vnd" %></span>
-                      </div>
-
-                   </div>
+                  
                         <%} %>
                          <%} %>
-             </div>
-
-         </div>
 
      </div>
 </body>

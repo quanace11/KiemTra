@@ -1,13 +1,7 @@
 package dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import bean.CayBean;
-import bean.GioHangBean;
-import bean.KhachHangBean;
 
 public class GioHangDao {
 	

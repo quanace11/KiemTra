@@ -25,6 +25,12 @@
 	    request.setCharacterEncoding("utf-8");
 		ArrayList<CayBean> cBean= (ArrayList<CayBean>) request.getAttribute("cBean");
 	%>
+	<%int count = 0;
+	if(session.getAttribute("soluongsp")!=null){
+		count = (int)session.getAttribute("soluongsp");
+	}
+	%>
+	
     <div id="main">
         <div id="header">
             <a style="display: inline-block;position: absolute;" href=""><img style="height: 66px;display: block;" src="assets/logo-caxavina-01.jpg" alt=""></a>
@@ -53,7 +59,7 @@
                     	</form> 
                		</li>
                 	<li>
-                		<a href="giohang.jsp">Giỏ Hàng</a>
+                		<a href="giohang.jsp">Giỏ Hàng(<%=count %>)</a>
                 	</li>
                 	<%if(request.getParameter("dangxuat")!= null)
                 	{

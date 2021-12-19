@@ -1,6 +1,8 @@
-package controller;
+package controllerAdmin;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bo.GioHangBo;
+import bean.AdminBean;
+import bo.AdminBo;
 
 /**
- * Servlet implementation class capnhatgiohang
+ * Servlet implementation class Login
  */
-@WebServlet("/capnhatgiohang")
-public class capnhatgiohang extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public capnhatgiohang() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,28 +34,31 @@ public class capnhatgiohang extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			String macay = request.getParameter("macay");
-			String delete= request.getParameter("delete");
-			String update=request.getParameter("update");
+			String user= request.getParameter("txtUser");
+			String pass=request.getParameter("txtPass");
 			HttpSession session = request.getSession();
-			GioHangBo gioHangbo=(GioHangBo)session.getAttribute("giohangbo");
-			long soluong = Long.parseLong(request.getParameter("soluong"));
-			if(update!=null) {
-				gioHangbo.update(macay, soluong);
-				session.setAttribute("giohangbo", gioHangbo);
-//				RequestDispatcher rd =request.getRequestDispatcher("giohangController");
-//				rd.forward(request, response);
-				response.sendRedirect("giohangController");
+			if(request.getParameter("but1")!=null) {
+				AdminBo dnBo = new AdminBo();
+			 	AdminBean login = dnBo.getAdmin(user, pass);
+			 	if(login != null){
+					session.setAttribute("admin", login);
+					request.setAttribute("kt", (long)1);
+					session.setAttribute("tenadmin", login.getTenDn());
+				}
+				else{
+					request.setAttribute("kt", (long)0);
+					RequestDispatcher rDispatcher =request.getRequestDispatcher("Login.jsp");
+					rDispatcher.forward(request, response);
+				}
+			 	response.sendRedirect("trangchu");
 			}
-			else if(delete!=null && macay!= null){
-				gioHangbo.xoa(macay);
-				session.setAttribute("giohangbo", gioHangbo);
-//				RequestDispatcher rDispatcher =request.getRequestDispatcher("giohangController");
-//				rDispatcher.forward(request, response);
-				response.sendRedirect("giohangController");
+			else {
+				RequestDispatcher rDispatcher =request.getRequestDispatcher("Login.jsp");
+				rDispatcher.forward(request, response);
 			}
-		
-		}catch(Exception e) {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
